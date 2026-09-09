@@ -132,8 +132,8 @@ public class NewAvrSeatReservationSystem {
             System.out.println( "Reservation for seat " + rowLetter + columnNumber + " has been cancelled.\n");
 
             hasReservedSeat = false; //Reset Initial Values
-            reservedRow = -1; //-1 since 0 is 0 is valid, 0 being A or 1
-            reservedColumn = -1; //-1 since 0 is 0 is valid, 0 being 1
+            reservedRow = -1; //-1 since 0 is valid; 0 being A or 1
+            reservedColumn = -1; //-1 since 0 is valid; 0 being 1
         }
 	  }
 	  
