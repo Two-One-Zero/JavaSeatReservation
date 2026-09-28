@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class NewAvrSeatReservationSystem {
 
-	// This doesn't work ooops wrong way to use parameters.
+	// This doesn't work ooops wrong way to use parameters...
 	  public static void main(String[] args) {
 	        Scanner input = new Scanner(System.in);
 	        
