@@ -1,3 +1,4 @@
+package avrSeatReservationPackage;
 import java.util.Scanner;
 
 public class AvrSeatReservation {
@@ -20,26 +21,23 @@ public class AvrSeatReservation {
 	 public static void main(String[] args)
 	    {
 		 
-		 boolean running = true;
-
-			while (running)
-			{
-				running = Menu();
-			}
+		Menu();
 
 			
 		 	
 	    }
 
-	 public static boolean Menu()
+	 public static void Menu()
 	 {
 		 
-		 
+		 do {
+	            
 		 System.out.println("==== AVR SEAT RESERVATION ====");
 		 System.out.println("1. Reserve Seat");
 		 System.out.println("2. Cancel Reservation");
 		 System.out.println("3. Display Seat Map");
 		 System.out.println("4. Exit");
+		 
 		 
 		
 		 System.out.print("Enter Choice: ");
@@ -67,14 +65,16 @@ public class AvrSeatReservation {
 		     case 4:
 		    	 System.out.println("Thank you for using the system.");
 		    	 input.close();
-			    	return false;
+		    	 break;
 		    	 
 		     default:
 		    	 System.out.print("Invalid input. Enter number (1-4): ");
 		    	 break;	 
 		 }
 		 
-		 return true;
+	 } while (menuChoice != 4);
+		 
+		 
 	 }
 	 
 	 public static void ReserveSeat()
