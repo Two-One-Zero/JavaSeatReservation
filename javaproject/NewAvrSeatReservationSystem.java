@@ -14,9 +14,9 @@ public class NewAvrSeatReservationSystem {
 	            {'O', 'O', 'X', 'O', 'O', 'X', 'O', 'O'}
 	        };
 	        
-	        boolean hasReservedSeat = false;
-	        int reservedRow = -1;
-	        int reservedColumn = -1;
+	        boolean[] hasReservedSeat = {false};
+	        int[] reservedRow = {-1};
+	        int[] reservedColumn = {-1};
 
 	        int menuChoice;
 
@@ -34,7 +34,7 @@ public class NewAvrSeatReservationSystem {
 	            // Switch statement to handle user menu choice
 	            switch (menuChoice) {
 	                case 1:	                   
-	                    ReserveSeat(hasReservedSeat,seats, input, reservedRow, reservedColumn);
+	                    ReserveSeat(hasReservedSeat, seats, input, reservedRow, reservedColumn);
 	                    break;
 
 	                case 2:	                   
@@ -58,12 +58,12 @@ public class NewAvrSeatReservationSystem {
 	        } while (menuChoice != 4);
 
 	        input.close();
-	  } 
+	    } 
 	  
 	//Use of parameters since we are using local variables in main and not global variables
-	  public static void ReserveSeat(boolean hasReservedSeat, char[][] seats, Scanner input, int reservedRow, int reservedColumn) {   
+	  public static void ReserveSeat(boolean[] hasReservedSeat, char[][] seats, Scanner input, int[] reservedRow, int[] reservedColumn) {   
 	  
-		  if (hasReservedSeat) {
+		  if (hasReservedSeat[0]) {
             System.out.println("You have already reserved a seat.\n");
         } else {
             DisplaySeatMap(seats);
@@ -80,14 +80,14 @@ public class NewAvrSeatReservationSystem {
                 else {
                     seats[row][column] = 'X';
 
-                    hasReservedSeat = true;
-                    reservedRow = row;
-                    reservedColumn = column;
+	                    hasReservedSeat[0] = true;
+	                    reservedRow[0] = row;
+	                    reservedColumn[0] = column;
 
                     System.out.println("Seat reserved successfully!\n");
                }
-	         }                                
-          }   
+	        }                                
+        }   
    }    
 	  //the int[] here means it must return an integer and 1d array on top of that, this function is used to get rowIndex and columnIndex
 	  public static int[] GetSeatSelection(Scanner input, char[][] seats) {
@@ -119,20 +119,20 @@ public class NewAvrSeatReservationSystem {
 	        return new int[] {rowIndex, columnIndex}; //returns 1d array
 	    }
 	  
-	  public static void CancelReservation(boolean hasReservedSeat, char[][] seats, Scanner input, int reservedRow, int reservedColumn){
-		  if (!hasReservedSeat) {
+	  public static void CancelReservation(boolean[] hasReservedSeat, char[][] seats, Scanner input, int[] reservedRow, int[] reservedColumn){
+		  if (!hasReservedSeat[0]) {
             System.out.println("You have no reservation.\n");
         } else {
-            seats[reservedRow][reservedColumn] = 'O';
+	            seats[reservedRow[0]][reservedColumn[0]] = 'O';
 
-            char rowLetter = (char) ('A' + reservedRow); //A is being treated as 0 here (essentially A is 65 or smthg but this is 0)
-            int columnNumber = reservedColumn + 1;  //Since array is 0-based indexing, +1 for showing correct output 
+	            char rowLetter = (char) ('A' + reservedRow[0]); //A is being treated as 0 here (essentially A is 65 or smthg but this is 0)
+	            int columnNumber = reservedColumn[0] + 1;  //Since array is 0-based indexing, +1 for showing correct output 
 
             System.out.println( "Reservation for seat " + rowLetter + columnNumber + " has been cancelled.\n");
 
-            hasReservedSeat = false; //Reset Initial Values
-            reservedRow = -1; //-1 since 0 is valid; 0 being A or 1
-            reservedColumn = -1; //-1 since 0 is valid; 0 being 1
+	            hasReservedSeat[0] = false; //Reset Initial Values
+	            reservedRow[0] = -1; //-1 since 0 is valid; 0 being A or 1
+	            reservedColumn[0] = -1; //-1 since 0 is valid; 0 being 1
         }
 	  }
 	  
@@ -144,18 +144,20 @@ public class NewAvrSeatReservationSystem {
 	        }
 	        System.out.println();
 
-	        for (int i = 0; i < seats.length; i++) { 
+	        for (int i = 0; i < seats.length; i++) {  // for loop
 	            char rowLabel = (char) ('A' + i);
 	            System.out.print(rowLabel + " ");
-	            for (int j = 0; j < seats[i].length; j++) {
+	            for (int j = 0; j < seats[i].length; j++) { // for nested loop
 	                System.out.print(seats[i][j] + " ");
 	            }
 	            System.out.println();
+				//Yess
 	        }
 	        System.out.println();
 	    }
 	  
-	  public static void DisplayOccupancy(char[][] seats) {
+	  public static void DisplayOccupancy(char[][] seats) 
+	   {
 
 	        int totalSeats = seats.length * seats[0].length;
 	        int occupiedSeats = 0;
@@ -175,4 +177,5 @@ public class NewAvrSeatReservationSystem {
 
 	        System.out.printf("Occupancy: %.2f%%%n%n",occupancyRate);
 	    }
+		
 }  
