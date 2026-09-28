@@ -2,7 +2,7 @@ package avrSeatReservationPackage;
 import java.util.Scanner;
 
 public class AvrSeatReservation {
-	
+	//finalfinal
 	public static int menuChoice;
 	public static char rowChoice;
 	public static int columnChoice;
@@ -42,11 +42,7 @@ public class AvrSeatReservation {
 		
 		 System.out.print("Enter Choice: ");
 		 
-		 while (!input.hasNextInt())
-			{
-				System.out.print("Invalid input. Enter number (1-4): ");
-				input.next();
-			}
+		
 		 
 		 menuChoice = input.nextInt();
 		
@@ -74,7 +70,7 @@ public class AvrSeatReservation {
 		 
 	 } while (menuChoice != 4);
 		 
-		 
+		 input.close();
 	 }
 	 
 	 public static void ReserveSeat()
